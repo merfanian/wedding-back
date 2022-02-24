@@ -23,9 +23,6 @@ class InvitationsView(View):
 
 
     def patch(self, request: HttpRequest, id):
-        if request.method != "PATCH":
-            raise HttpResponseNotAllowed(["PATCH"])
-
         body = json.loads(request.body)
         if "decision" not in body:
             raise HttpResponseBadRequest("Decision not found.")
