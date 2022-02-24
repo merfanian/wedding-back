@@ -1,8 +1,7 @@
-from django import forms
-from django.db import models
+from django.db.models import *
 from shortuuid.django_fields import ShortUUIDField
 
-class InvitedPerson(models.Model):
+class InvitedPerson(Model):
     SEX_CHOICES = [
         ("m", "Male"),
         ("f", "Female"),
@@ -15,7 +14,8 @@ class InvitedPerson(models.Model):
         alphabet="abcdef1234567890",
         primary_key=True,
     )
-    name = models.TextField()
-    sex = forms.ChoiceField(choices=SEX_CHOICES)
-    description = models.TextField()
-    visit_count = models.IntegerField(default=0)
+    name = CharField(max_length=100)
+    sex = CharField(max_length=1, choices=SEX_CHOICES)
+    description = TextField()
+    visit_count = IntegerField(default=0)
+    decision = BooleanField(null=True)
