@@ -1,6 +1,7 @@
 from django.db.models import *
 from shortuuid.django_fields import ShortUUIDField
 
+
 class InvitedPerson(Model):
     SEX_CHOICES = [
         ("m", "Male"),
@@ -19,3 +20,11 @@ class InvitedPerson(Model):
     description = TextField()
     visit_count = IntegerField(default=0)
     decision = BooleanField(null=True)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "sex": self.sex,
+            "description": self.description,
+            "decision": self.decision}
